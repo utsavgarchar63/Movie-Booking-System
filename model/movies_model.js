@@ -29,6 +29,10 @@ const moviesSchema = mongoose.Schema({
           type : Array,
           required : true
      },
+     posterlink:{
+          type : String,
+          required : true
+     },
      country : {
           type : String,
           required : true

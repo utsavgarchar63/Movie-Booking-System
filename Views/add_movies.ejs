@@ -27,14 +27,14 @@
                   <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="basic-default-name">Title</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="basic-default-name" name="title"
+                      <input type="text" class="form-control"  onchange="return moviedetail()" id="moviename" name="title"
                         placeholder="Movie Title" />
                     </div>
                   </div>
                   <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="basic-default-company">Year</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="basic-default-company" name="year"
+                      <input type="text"  class="form-control" id="basic-default-company" name="year"
                         placeholder="Movies Release Year" />
                     </div>
                   </div>
@@ -86,14 +86,29 @@
                             placeholder="Country" />
                         </div>
                       </div>
-
+                      <input type="hidden" name="posterlink" id="posterlink">
                       <div class="row justify-content-end">
                         <div class="col-sm-10">
-                          <input type="submit" class="btn btn-primary" value="Submit">
+                          <input type="submit"  class="btn btn-primary" value="Submit">
                         </div>
                       </div>
                 </form>
               </div>
             </div>
-          </div>
+
+          <script>
+            function moviedetail(){
+                var moviename = document.getElementById('moviename').value
+                var url = "https://omdbapi.com/?t="+moviename+"&apikey=a17bc162"
+                $.ajax({
+                url : url,
+                type : 'get',
+                success : function(e){
+                    console.log(e.Poster)
+                    document.getElementById('posterlink').value = e.Poster
+                    console.log(e)
+                }
+            })
+            }
+        </script>
           <%-include('footer')%>
